@@ -3,7 +3,9 @@ environment that covers pretty much all neuroimaging-related packages you might 
 use. Please let us know if you want to see any additional packages.
 
 The idea with this repo is to provide an open specification of the environment that was
-used to run a particular analysis on the CBU imaging system. 
+used to run a particular analysis on the CBU imaging system. If you report that you used
+a particular release of this environment in your manuscript, you are providing a fairly
+complete description of your analysis software.
 
 # Usage (on the CBU imaging system)
 
@@ -21,6 +23,12 @@ shell):
 ```
 . /imaging/local/software/centos7/anaconda3/etc/profile.d/conda.sh
 conda activate cbu_nipy_201811
+```
+
+For first-time users, you may also want to enable the [jupyter notebook extensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions) with
+
+```
+jupyter nbextensions_configurator enable --user
 ```
 
 # Installing
