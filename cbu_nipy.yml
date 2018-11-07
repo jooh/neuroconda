@@ -3,10 +3,12 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - absl-py=0.6.1=py36_0
   - alabaster=0.7.12=py_0
   - apipkg=1.5=py_0
   - appdirs=1.4.3=py_1
   - asn1crypto=0.24.0=py36_1003
+  - astor=0.7.1=py_0
   - astroid=2.0.3=py36_0
   - atomicwrites=1.2.1=py_0
   - attrs=18.2.0=py_0
@@ -14,6 +16,7 @@ dependencies:
   - backcall=0.1.0=py_0
   - bleach=3.0.2=py_0
   - bokeh=1.0.0=py36_1000
+  - c-ares=1.15.0=h470a237_1
   - ca-certificates=2018.10.15=ha4d7672_0
   - cairo=1.14.10=0
   - certifi=2018.10.15=py36_1000
@@ -45,6 +48,7 @@ dependencies:
   - freetype=2.8.1=hfa320df_1
   - funcsigs=1.0.2=py_2
   - future=0.17.0=py36_1000
+  - gast=0.2.0=py_0
   - geos=3.6.2=hfc679d8_3
   - gettext=0.19.8.1=h5e8e0c9_1
   - git=2.18.0=0
@@ -56,6 +60,7 @@ dependencies:
   - gnutls=3.5.19=h2a4e5f8_1
   - graphite2=1.3.12=hfc679d8_1
   - graphviz=2.38.0=7
+  - grpcio=1.14.1=py36hd60e7a3_0
   - gst-plugins-base=1.12.5=hde13a9d_0
   - gstreamer=1.12.5=h61a6719_0
   - h5py=2.8.0=py36h097b052_4
@@ -109,6 +114,7 @@ dependencies:
   - libmagic=5.33=h470a237_0
   - libntlm=1.4=h470a237_1
   - libpng=1.6.34=ha92aebf_2
+  - libprotobuf=3.6.1=hd28b015_0
   - libsodium=1.0.16=h470a237_1
   - libssh2=1.8.0=h5b517e9_2
   - libstdcxx-ng=7.2.0=hdf63c60_3
@@ -119,6 +125,7 @@ dependencies:
   - libxslt=1.1.32=h88dbc4e_2
   - locket=0.2.0=py_2
   - lxml=4.2.5=py36hc9114bc_0
+  - markdown=2.6.11=py_0
   - markupsafe=1.0=py36h470a237_1
   - matplotlib=2.2.2=py36_1
   - mccabe=0.6.1=py_1
@@ -164,6 +171,7 @@ dependencies:
   - popt=1.16=hd3124c7_1001
   - prometheus_client=0.4.2=py_0
   - prompt_toolkit=2.0.6=py_0
+  - protobuf=3.6.1=py36hfc679d8_1
   - prov=1.5.0=py36_0
   - psutil=5.4.7=py36h470a237_1
   - pthread-stubs=0.4=h470a237_1
@@ -224,6 +232,9 @@ dependencies:
   - sqlite=3.20.1=2
   - statsmodels=0.9.0=py36h7eb728f_0
   - tblib=1.3.2=py_1
+  - tensorboard=1.10.0=py36_0
+  - tensorflow=1.10.0=py36_0
+  - termcolor=1.1.0=py_2
   - terminado=0.8.1=py36_1001
   - testpath=0.4.2=py36_1000
   - tk=8.6.8=ha92aebf_0
@@ -236,6 +247,7 @@ dependencies:
   - urllib3=1.23=py36_1001
   - wcwidth=0.1.7=py_1
   - webencodings=0.5.1=py_1
+  - werkzeug=0.14.1=py_0
   - wheel=0.32.2=py36_0
   - whoosh=2.7.4=py_1
   - widgetsnbextension=3.4.2=py36_1000
@@ -257,10 +269,12 @@ dependencies:
   - scikit-learn=0.19.1=py36hedc7406_0
   - scipy=1.1.0=py36hc49cb51_0
   - pip:
+    - git+https://github.com/jooh/Dcm2Bids
     - grabbit==0.2.5
     - msgpack==0.5.6
     - num2words==0.5.7
     - pybids==0.6.5
     - git+https://github.com/gallantlab/pycortex
+    - git+https://github.com/poldracklab/pydeface
 prefix: /imaging/local/software/centos7/anaconda3/envs/cbu_nipy_201811
 

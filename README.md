@@ -10,22 +10,28 @@ complete description of your analysis software.
 # Usage (on the CBU imaging system)
 
 
-TCSH / CSH shells (CBU standard - put this in your ~/.cshrc file to get this environment in
-every new shell):
+TCSH / CSH shells (CBU standard - put this in your ~/.cshrc file):
 
 ```
 source /imaging/local/software/centos7/anaconda3/etc/profile.d/conda.csh
-conda activate cbu_nipy_201811
 ```
 
-BASH (it's better - put this in your ~/.bashrc file to get this environment in every new
-shell):
+BASH (it's better - put this in your ~/.bashrc file):
 ```
 . /imaging/local/software/centos7/anaconda3/etc/profile.d/conda.sh
+```
+
+Then all you have to do is
+
+```
 conda activate cbu_nipy_201811
 ```
 
-For first-time users, you may also want to enable the [jupyter notebook extensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions) with
+(Note that it is -not- recommended to put the above line in your login script since this
+can cause conflicts with e.g. vncserver.)
+
+For first-time users, you may also want to enable the [jupyter notebook
+extensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions) with
 
 ```
 jupyter nbextensions_configurator enable --user
@@ -40,11 +46,11 @@ This environment is already available on the CBU imaging system, currently under
 If you are installing elsewhere, it's a simple matter of
 
 ```
-conda env create -f cbu_nipy_env.yaml
+conda env create -f cbu_nipy_env.yaml --name cbu_nipy_mine
+conda activate cbu_nipy_mine
 ```
-You will then have to locate the directory for your environment (typically through
-`source activate [envname]; echo $CONDA_PREFIX`), and copy over the environment
-variables (assuming you are in the repo root):
+You may then want to copy over the environment variables (assuming you are in the repo
+root):
 
 ```
 rsync -av --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
@@ -53,7 +59,7 @@ rsync -av --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
 The last bit is optional - if you already have the packages you want to use on your path
 (e.g. through adding them in your shell login script) you don't need to add them again.
 This functionality is mainly useful for the CBU imaging setup, where nothing is on the
-path by default (and we want to be able to increment the versions of these dependencies
+path by default (and we want to be able to increment the version of these dependencies
 together with the conda environment releases).
 
 # Dependencies
