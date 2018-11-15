@@ -1,4 +1,4 @@
-name: cbu_nipy_201811
+name: cbu_nipy_1_00
 channels:
   - conda-forge
   - defaults
@@ -35,6 +35,7 @@ dependencies:
   - dask-jobqueue=0.4.1=py_0
   - datalad=0.11.0=py36_0
   - dbus=1.13.0=h3a4f0e9_0
+  - dcm2niix=1.0.20180622=h2d50403_0
   - decorator=4.3.0=py_0
   - distributed=1.24.0=py36_1000
   - docrep=0.2.4=py_0
@@ -95,6 +96,8 @@ dependencies:
   - jupyter_highlight_selected_word=0.2.0=py36_1000
   - jupyter_latex_envs=1.4.4=py36_1000
   - jupyter_nbextensions_configurator=0.4.0=py36_1000
+  - jupyterlab=0.35.4=py36_0
+  - jupyterlab_server=0.2.0=py_0
   - keepalive=0.5=py_1
   - keyring=16.0.0=py36_0
   - keyrings.alt=3.1=py_0
@@ -276,5 +279,5 @@ dependencies:
     - pybids==0.6.5
     - git+https://github.com/gallantlab/pycortex
     - git+https://github.com/poldracklab/pydeface
-prefix: /imaging/local/software/centos7/anaconda3/envs/cbu_nipy_201811
+prefix: /imaging/local/software/centos7/anaconda2/envs/cbu_nipy_1_00
 

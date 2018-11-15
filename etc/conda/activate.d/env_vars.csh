@@ -17,7 +17,6 @@ setenv FREESURFER_HOME "/imaging/local/software/freesurfer/6.0.0/x86_64"
 source ${FREESURFER_HOME}/SetUpFreeSurfer.csh
 
 # misc
-setenv PATH "/imaging/local/software/dcm2niix/bin:$PATH"
 setenv PATH "/imaging/local/software/centos7/ants/bin/ants/bin:$PATH"
 
 setenv CBU_NIPY_VERSION 201811_csh

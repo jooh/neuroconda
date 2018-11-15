@@ -46,7 +46,7 @@ This environment is already available on the CBU imaging system, currently under
 If you are installing elsewhere, it's a simple matter of
 
 ```
-conda env create -f cbu_nipy_env.yaml --name cbu_nipy_mine
+conda env create -f cbu_nipy.yaml --name cbu_nipy_mine
 conda activate cbu_nipy_mine
 ```
 You may then want to copy over the environment variables (assuming you are in the repo
