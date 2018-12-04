@@ -1,12 +1,14 @@
-name: cbu_nipy_1_00
+name: cbu_nipy_1_01
 channels:
   - conda-forge
   - defaults
+  - r
 dependencies:
   - absl-py=0.6.1=py36_0
   - alabaster=0.7.12=py_0
   - apipkg=1.5=py_0
   - appdirs=1.4.3=py_1
+  - arrow=0.12.1=py36_1002
   - asn1crypto=0.24.0=py36_1003
   - astor=0.7.1=py_0
   - astroid=2.0.3=py36_0
@@ -14,6 +16,8 @@ dependencies:
   - attrs=18.2.0=py_0
   - babel=2.6.0=py_1
   - backcall=0.1.0=py_0
+  - binaryornot=0.4.4=py_1
+  - black=18.9b0=py_0
   - bleach=3.0.2=py_0
   - bokeh=1.0.0=py36_1000
   - c-ares=1.15.0=h470a237_1
@@ -24,6 +28,7 @@ dependencies:
   - chardet=3.0.4=py36_1003
   - click=7.0=py_0
   - cloudpickle=0.6.1=py_0
+  - cookiecutter=1.6.0=py36_1000
   - cryptography=2.3.1=py36hdffb7b8_0
   - cryptography-vectors=2.3.1=py36_1000
   - curl=7.61.1=h74213dd_2
@@ -84,6 +89,7 @@ dependencies:
   - jedi=0.13.1=py36_1000
   - jeepney=0.4=py_0
   - jinja2=2.10=py_1
+  - jinja2-time=0.2.0=py_2
   - jpeg=9c=h470a237_1
   - jsmin=2.2.2=py36_1000
   - jsonschema=2.6.0=py36_1002
@@ -172,6 +178,7 @@ dependencies:
   - pixman=0.34.0=h470a237_3
   - pluggy=0.8.0=py_0
   - popt=1.16=hd3124c7_1001
+  - poyo=0.4.2=py_0
   - prometheus_client=0.4.2=py_0
   - prompt_toolkit=2.0.6=py_0
   - protobuf=3.6.1=py36hfc679d8_1
@@ -241,6 +248,7 @@ dependencies:
   - terminado=0.8.1=py36_1001
   - testpath=0.4.2=py36_1000
   - tk=8.6.8=ha92aebf_0
+  - toml=0.10.0=py_0
   - toolz=0.9.0=py_1
   - tornado=5.1.1=py36h470a237_0
   - tqdm=4.28.1=py_0
@@ -252,6 +260,7 @@ dependencies:
   - webencodings=0.5.1=py_1
   - werkzeug=0.14.1=py_0
   - wheel=0.32.2=py36_0
+  - whichcraft=0.5.2=py_1
   - whoosh=2.7.4=py_1
   - widgetsnbextension=3.4.2=py36_1000
   - wrapt=1.10.11=py36h470a237_1
@@ -279,5 +288,5 @@ dependencies:
     - pybids==0.6.5
     - git+https://github.com/gallantlab/pycortex
     - git+https://github.com/poldracklab/pydeface
-prefix: /imaging/local/software/centos7/anaconda2/envs/cbu_nipy_1_00
+prefix: /imaging/local/software/centos7/anaconda3/envs/cbu_nipy_1_01
 
