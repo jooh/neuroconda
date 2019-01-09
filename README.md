@@ -24,7 +24,7 @@ BASH (it's better - put this in your ~/.bashrc file):
 Then all you have to do is
 
 ```
-conda activate cbu_nipy_1_00
+conda activate cbu_nipy_1_02
 ```
 
 (Note that it is -not- recommended to put the above line in your login script since this
