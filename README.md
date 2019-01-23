@@ -24,7 +24,7 @@ BASH (it's better - put this in your ~/.bashrc file):
 Then all you have to do is
 
 ```
-conda activate cbu_nipy_1_02
+conda activate neuroconda_1_03
 ```
 
 (Note that it is -not- recommended to put the above line in your login script since this
@@ -46,8 +46,8 @@ This environment is already available on the CBU imaging system, currently under
 If you are installing elsewhere, it's a simple matter of
 
 ```
-conda env create -f cbu_nipy.yaml --name cbu_nipy_mine
-conda activate cbu_nipy_mine
+conda env create -f neuroconda.yaml --name neuroconda_mine
+conda activate neuroconda_mine
 ```
 You may then want to copy over the environment variables (assuming you are in the repo
 root):
@@ -71,6 +71,18 @@ locations in [/etc/conda/activate.d/env_vars.sh](env_vars.sh) to match):
 * ANTS
 * Freesurfer
 * FSL
+
+# FAQ
+* _Can I use it on Mac or Windows?_ No. We use multiple packages that are only available
+  under Linux on Conda. You could probably put the environment into a
+  [Neurodocker](https://github.com/kaczmarj/neurodocker) container though.
+* _I can't find package *X*_ Pull requests are welcome! We aim for inclusivity, so
+  barring conflicting dependencies anything neuro-related goes.
+* _This is not how you're meant to use environments_ That's not a question, but you're
+  right. If you are a developer you probably want to user many small environments rather
+  than a single monolith. But if you are a data analyst, you may value productivity and
+  easy reproducibility over control over the exact package versions you use. Neuroconda
+  is aimed at the latter group, much like Anaconda.
 
 # Problems
 Please contact Johan Carlin or open an issue.
