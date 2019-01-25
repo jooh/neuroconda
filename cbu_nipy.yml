@@ -511,6 +511,7 @@ dependencies:
     - num2words==0.5.7
     - pybids==0.6.5
     - python-xmp-toolkit==2.0.1
+    - Transplant==0.8.8
     - git+https://github.com/jooh/Dcm2Bids
     - git+https://github.com/gallantlab/pycortex
     - git+https://github.com/poldracklab/pydeface
