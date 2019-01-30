@@ -24,7 +24,7 @@ BASH (it's better - put this in your ~/.bashrc file):
 Then all you have to do is
 
 ```
-conda activate neuroconda_1_03
+conda activate neuroconda_1_3
 ```
 
 (Note that it is -not- recommended to put the above line in your login script since this
@@ -79,10 +79,10 @@ locations in [/etc/conda/activate.d/env_vars.sh](env_vars.sh) to match):
 * _I can't find package *X*_ Pull requests are welcome! We aim for inclusivity, so
   barring conflicting dependencies anything neuro-related goes.
 * _This is not how you're meant to use environments_ That's not a question, but you're
-  right. If you are a developer you probably want to user many small environments rather
-  than a single monolith. But if you are a data analyst, you may value productivity and
-  easy reproducibility over control over the exact package versions you use. Neuroconda
-  is aimed at the latter group, much like Anaconda.
+  right. If you are a developer you probably want to a separate environment for each
+  project you work on rather than a single monolith. But if you are a data analyst, you
+  may value productivity and easy reproducibility over control over the exact package
+  versions you use. Neuroconda is aimed at the latter group, much like Anaconda.
 
 # Problems
 Please contact Johan Carlin or open an issue.

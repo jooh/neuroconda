@@ -1,4 +1,4 @@
-name: neuroconda_1_03dev
+name: neuroconda_1_3
 channels:
   - pypi
   - conda-forge
@@ -583,4 +583,3 @@ dependencies:
     - git+https://github.com/jooh/Dcm2Bids@30d48fefce56e7bb0e5936b2ed80653c3df3442b
     - git+https://github.com/gallantlab/pycortex@c69da3623c41b4762beb84957c0ffaf2f2f5e9b1
     - git+https://github.com/poldracklab/pydeface@6ec916c2dc4595ebf1c998080328b5c31fbb8edd
-prefix: /imaging/local/software/centos7/anaconda3/envs/neuroconda_1_03dev
