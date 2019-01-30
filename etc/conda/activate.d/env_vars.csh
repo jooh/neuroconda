@@ -18,5 +18,3 @@ source ${FREESURFER_HOME}/SetUpFreeSurfer.csh
 
 # misc
 setenv PATH "/imaging/local/software/centos7/ants/bin/ants/bin:$PATH"
-
-setenv CBU_NIPY_VERSION 201811_csh

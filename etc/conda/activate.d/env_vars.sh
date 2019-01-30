@@ -15,5 +15,3 @@ source ${FREESURFER_HOME}/SetUpFreeSurfer.sh
 
 # misc
 export PATH="/imaging/local/software/centos7/ants/bin/ants/bin/:$PATH"
-
-export CBU_NIPY_VERSION=201811_bash
