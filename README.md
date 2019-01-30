@@ -52,7 +52,8 @@ together with the conda environment releases).
 # Dependencies
 We add the following packages to the PATH while activating the environment. You would
 need to install these packages yourself to mirror the CBU setup (and change the install
-locations in [/etc/conda/activate.d/env_vars.sh](env_vars.sh) to match):
+locations in [env_vars.sh](/etc/conda/activate.d/env_vars.sh) and/or
+[env_vars.csh](/etc/conda/activate.d/env_vars.csh) to match):
 
 * SPM 12 / Matlab r2018a
 * ANTS
