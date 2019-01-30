@@ -9,19 +9,7 @@ complete description of your analysis software.
 
 # Usage (on the CBU imaging system)
 
-
-TCSH / CSH shells (CBU standard - put this in your ~/.cshrc file):
-
-```
-source /imaging/local/software/centos7/anaconda3/etc/profile.d/conda.csh
-```
-
-BASH (it's better - put this in your ~/.bashrc file):
-```
-. /imaging/local/software/centos7/anaconda3/etc/profile.d/conda.sh
-```
-
-Then all you have to do is
+All you have to do is
 
 ```
 conda activate neuroconda_1_3
@@ -39,9 +27,8 @@ jupyter nbextensions_configurator enable --user
 
 # Installing
 
-This environment is already available on the CBU imaging system, currently under
-/imaging/local/software/centos7/anaconda3. You shouldn't have to install it yourself
-(and if you do you may need to change the prefix setting).
+This environment is already available on the CBU imaging system. You shouldn't have to
+install it yourself (and if you do you may need to change the prefix setting).
 
 If you are installing elsewhere, it's a simple matter of
 
@@ -50,7 +37,7 @@ conda env create -f neuroconda.yaml --name neuroconda_mine
 conda activate neuroconda_mine
 ```
 You may then want to copy over the environment variables (assuming you are in the repo
-root):
+root and you have activated the environment):
 
 ```
 rsync -av --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
@@ -64,7 +51,7 @@ together with the conda environment releases).
 
 # Dependencies
 We add the following packages to the PATH while activating the environment. You would
-need to install these packages yourself to mirror our setup (and change the install
+need to install these packages yourself to mirror the CBU setup (and change the install
 locations in [/etc/conda/activate.d/env_vars.sh](env_vars.sh) to match):
 
 * SPM 12 / Matlab r2018a
@@ -79,8 +66,8 @@ locations in [/etc/conda/activate.d/env_vars.sh](env_vars.sh) to match):
 * _I can't find package *X*_ Pull requests are welcome! We aim for inclusivity, so
   barring conflicting dependencies anything neuro-related goes.
 * _This is not how you're meant to use environments_ That's not a question, but you're
-  right. If you are a developer you probably want to a separate environment for each
-  project you work on rather than a single monolith. But if you are a data analyst, you
+  right. If you're a developer you probably want to a separate environment for each
+  project you work on rather than a single monolith. But if you're a data analyst, you
   may value productivity and easy reproducibility over control over the exact package
   versions you use. Neuroconda is aimed at the latter group, much like Anaconda.
 
