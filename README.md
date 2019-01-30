@@ -33,7 +33,7 @@ install it yourself (and if you do you may need to change the prefix setting).
 If you are installing elsewhere, it's a simple matter of
 
 ```
-conda env create -f neuroconda.yaml --name neuroconda_mine
+conda env create -f neuroconda.yml --name neuroconda_mine
 conda activate neuroconda_mine
 ```
 You may then want to copy over the environment variables (assuming you are in the repo
