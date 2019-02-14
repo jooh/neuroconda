@@ -1,11 +1,12 @@
-name: neuroconda_1_3
+name: neuroconda_1_4
 channels:
-  - pypi
   - conda-forge
+  - pypi
   - defaults
   - r
 dependencies:
   - _r-mutex=1.0.0=anacondar_1
+  - _tflow_select=2.3.0=mkl
   - absl-py=0.6.1=py36_1000
   - alabaster=0.7.12=py_0
   - aniso8601=4.1.0=py_0
@@ -26,6 +27,7 @@ dependencies:
   - binutils_linux-64=7.2.0=had2808c_27
   - black=18.9b0=py_0
   - blas=1.0=mkl
+  - bleach=3.1.0=py_0
   - blosc=1.15.1=hf484d3e_1002
   - bokeh=1.0.4=py36_1000
   - boto=2.49.0=py_0
@@ -43,6 +45,9 @@ dependencies:
   - coverage=4.5.2=py36h14c3975_1000
   - cryptography=2.3.1=py36hb7f436b_1000
   - cryptography-vectors=2.4.2=py_1000
+  - cudatoolkit=9.2=0
+  - cudnn=7.3.1=cuda9.2_0
+  - cupti=9.2.148=0
   - curl=7.63.0=h646f8bb_1000
   - cvxopt=1.2.0=py36h9e0dedd_0
   - cycler=0.10.0=py_1
@@ -54,9 +59,10 @@ dependencies:
   - dask-jobqueue=0.4.1=py_0
   - datalad=0.11.1=py36_0
   - dbus=1.13.0=h4e0c4b3_1000
-  - dcm2niix=1.0.20181114=h6bb024c_1000
+  - dcm2niix=1.0.20180622=h6bb024c_1000
   - decorator=4.3.0=py_0
   - deprecated=1.2.4=py_0
+  - deprecation=2.0=py_0
   - dipy=0.15.0=py36h7eb728f_0
   - distributed=1.25.2=py36_1000
   - docrep=0.2.5=py_0
@@ -77,6 +83,10 @@ dependencies:
   - fonts-anaconda=1=h8fa9717_0
   - fonts-continuum=1=0
   - freetype=2.9.1=h3cfcefd_1004
+  - fsleyes=0.27.3=py_1
+  - fsleyes-props=1.6.5=py_1
+  - fsleyes-widgets=0.7.3=py_1
+  - fslpy=1.13.3=pyh24bf2e0_0
   - funcsigs=1.0.2=py_3
   - future=0.17.1=py36_1000
   - gast=0.2.1.post0=py_0
@@ -145,6 +155,9 @@ dependencies:
   - jupyterlab=0.35.4=py36_0
   - jupyterlab_server=0.2.0=py_0
   - keepalive=0.5=py_1
+  - keras=2.1.6=py36_0
+  - keras-applications=1.0.6=py36_0
+  - keras-preprocessing=1.0.5=py_0
   - keyring=17.1.1=py36_1000
   - keyrings.alt=3.1=py_0
   - kiwisolver=1.0.1=py36h6bb024c_1002
@@ -158,7 +171,9 @@ dependencies:
   - libgcrypt=1.8.4=hf484d3e_1000
   - libgfortran=3.0.0=1
   - libgfortran-ng=7.2.0=hdf63c60_3
+  - libglu=9.0.0=hf484d3e_1000
   - libgpg-error=1.32=hf484d3e_1000
+  - libgpuarray=0.7.6=h14c3975_1003
   - libgsasl=1.8.0=h19a2143_1004
   - libiconv=1.15=h14c3975_1004
   - libmagic=5.33=h14c3975_1000
@@ -167,6 +182,7 @@ dependencies:
   - libpng=1.6.36=h84994c4_1000
   - libprotobuf=3.6.1=hdbcaa40_1000
   - libsodium=1.0.16=h14c3975_1001
+  - libspatialindex=1.8.5=hf484d3e_1003
   - libssh2=1.8.0=h1ad7b7a_1003
   - libstdcxx-ng=7.3.0=hdf63c60_0
   - libtiff=4.0.10=h648cc4a_1001
@@ -179,6 +195,7 @@ dependencies:
   - lxml=4.3.0=py36h23eabaa_1000
   - lzo=2.10=h14c3975_1000
   - make=4.2.1=h14c3975_2004
+  - mako=1.0.7=py_1
   - markdown=2.6.11=py_0
   - markupsafe=1.1.0=py36h14c3975_1000
   - matplotlib=3.0.2=py36h8a2030e_1001
@@ -187,6 +204,7 @@ dependencies:
   - metis=5.1.0=hf484d3e_1003
   - mistune=0.8.4=py36h14c3975_1000
   - mkl=2018.0.3=1
+  - mkl-service=1.1.2=py36h90e4bf4_5
   - mkl_fft=1.0.10=py36_0
   - mkl_random=1.0.2=py36_0
   - mock=2.0.0=py36_1000
@@ -195,6 +213,7 @@ dependencies:
   - mpc=1.1.0=hb20f59a_1006
   - mpfr=4.0.1=ha14ba45_1000
   - mpmath=1.1.0=py_0
+  - msgpack-python=0.6.1=py36h6bb024c_0
   - multidict=4.5.2=py36h14c3975_1000
   - mutagen=1.41.1=py_0
   - nbconvert=5.3.1=py_1
@@ -205,7 +224,7 @@ dependencies:
   - neurdflib=5.0.0.post1=py_0
   - nibabel=2.3.2=pyh24bf2e0_0
   - nilearn=0.5.0=pyh24bf2e0_0
-  - nipype=1.1.7=py36_0
+  - nipype=1.1.8=py36_0
   - nose=1.3.7=py36_1002
   - notebook=5.7.4=py36_1000
   - numexpr=2.6.9=py36h637b7d7_1000
@@ -231,14 +250,16 @@ dependencies:
   - pexpect=4.6.0=py36_1000
   - pickleshare=0.7.5=py36_1000
   - pillow=5.4.1=py36h00a061d_1000
-  - pip=10.0.1=py36_0
+  - pip=19.0.2=py36_0
   - pixman=0.34.0=h14c3975_1003
   - pluggy=0.8.1=py_0
   - popt=1.16=h1cef754_2002
   - poyo=0.4.2=py_0
+  - progressbar2=3.38.0=py_1
   - prometheus_client=0.5.0=py_0
   - prompt_toolkit=2.0.7=py_0
   - protobuf=3.6.1=py36hf484d3e_1001
+  - prov=1.5.3=py_1
   - psutil=5.4.8=py36h14c3975_1000
   - pthread-stubs=0.4=h14c3975_1001
   - ptyprocess=0.6.0=py36_1000
@@ -252,12 +273,15 @@ dependencies:
   - pyflakes=2.0.0=py_0
   - pygithub=1.43.4=py36_0
   - pygments=2.3.1=py_0
+  - pygpu=0.7.6=py36h3010b51_1000
   - pyjwt=1.7.1=py_0
   - pyld=1.0.4=py_0
   - pylint=2.2.2=py36_1000
+  - pyopengl=3.1.3b2=py_1
   - pyopenssl=18.0.0=py36_1000
   - pyparsing=2.3.1=py_0
   - pyperclip=1.6.4=py_0
+  - pypubsub=4.0.3=py_0
   - pyqt=5.6.0=py36h13b7fb3_1008
   - pyrsistent=0.14.9=py36h14c3975_1000
   - pysocks=1.6.8=py36_1002
@@ -265,9 +289,11 @@ dependencies:
   - pytest=3.9.1=py36_1000
   - pytest-cov=2.6.1=py_0
   - pytest-forked=1.0.1=py_0
+  - pytest-runner=4.2=py_1
   - pytest-xdist=1.26.0=py_0
   - python=3.6.7=hd21baee_1001
   - python-dateutil=2.7.5=py_0
+  - python-utils=2.3.0=py_1
   - pytz=2018.9=py_0
   - pywavelets=1.0.1=py36h3010b51_1000
   - pyyaml=3.13=py36h14c3975_1001
@@ -489,6 +515,7 @@ dependencies:
   - rpy2=2.9.4=py36r351h941a26a_1
   - rstudio=1.1.456=h6bb024c_1
   - rsync=3.1.3=h84994c4_1002
+  - rtree=0.8.3=py36_1000
   - scikit-image=0.14.1=py36hf484d3e_1004
   - scikit-learn=0.20.1=py36h4989274_0
   - scipy=1.1.0=py36hfa4b5c9_1
@@ -506,6 +533,7 @@ dependencies:
   - soupsieve=1.7.1=py36_1000
   - sparqlwrapper=1.8.2=py36_1000
   - sphinx=1.8.3=py36_1000
+  - sphinx_rtd_theme=0.4.2=py_0
   - sphinxcontrib-websupport=1.1.0=py_1
   - spyder=3.3.2=py36_1001
   - spyder-kernels=0.3.0=py36_1001
@@ -515,11 +543,13 @@ dependencies:
   - sympy=1.3=py36_1000
   - tbb=2018_20171205=0
   - tblib=1.3.2=py_1
-  - tensorboard=1.10.0=py36_0
-  - tensorflow=1.10.0=py36_0
+  - tensorboard=1.12.2=py36he6710b0_0
+  - tensorflow=1.12.0=mkl_py36h69b6ba0_0
+  - tensorflow-base=1.12.0=mkl_py36h3c3e929_0
   - termcolor=1.1.0=py_2
   - terminado=0.8.1=py36_1001
   - testpath=0.4.2=py36_1000
+  - theano=1.0.4=py36hf484d3e_1000
   - tk=8.6.9=h84994c4_1000
   - tktable=2.10=h14c3975_0
   - toml=0.10.0=py_0
@@ -528,6 +558,7 @@ dependencies:
   - tqdm=4.29.1=py_0
   - traitlets=4.3.2=py36_1000
   - traits=4.6.0=py36h14c3975_1002
+  - trimesh=2.36.27=py_0
   - typed-ast=1.1.1=py36h14c3975_1000
   - tzlocal=1.5.1=py_0
   - unixodbc=2.3.7=h227dcee_1000
@@ -542,6 +573,9 @@ dependencies:
   - widgetsnbextension=3.4.2=py36_1000
   - wrapt=1.11.0=py36h14c3975_1000
   - wurlitzer=1.0.2=py36_1000
+  - wxnatpy=0.3.1=py_1
+  - wxpython=4.0.3=py36h6b2db4c_1002
+  - xnat=0.3.13=py_0
   - xorg-kbproto=1.0.7=h14c3975_1002
   - xorg-libice=1.0.9=h14c3975_1004
   - xorg-libsm=1.2.3=h4937e3b_1000
@@ -563,23 +597,20 @@ dependencies:
   - zict=0.1.3=py_0
   - zlib=1.2.11=h14c3975_1004
   - pip:
-    - msgpack==0.6.1
-    - msgpack-python==0.5.6
-    - bleach==3.1.0
+    - bids-validator==1.1.4
     - datalad-hirni==0.0.1
     - datalad-neuroimaging==0.1.5
     - datalad-revolution==0.6.0
     - datalad-webapp==0.1
     - dcmstack==0.7.0
-    - grabbit==0.2.5
+    - grabbit==0.2.6
     - heudiconv==0.5.3
     - nistats==0.0.1b0
     - num2words==0.5.7
-    - prov==1.5.3
-    - pybids==0.6.5
+    - pybids==0.7.1
     - python-xmp-toolkit==2.0.1
     - git+https://github.com/datalad/datalad-container@0.2.2
-    - git+https://github.com/bastibe/transplant@7b2a1d41520519bd577028b64592d95c8a650ade
+    - git+https://github.com/bastibe/transplant@ffb1c68cad0377fe7a71c26e095013a7fb47894a
     - git+https://github.com/jooh/Dcm2Bids@30d48fefce56e7bb0e5936b2ed80653c3df3442b
-    - git+https://github.com/gallantlab/pycortex@c69da3623c41b4762beb84957c0ffaf2f2f5e9b1
+    - git+https://github.com/gallantlab/pycortex@2191dfd02f9a9ea9230bd8e9fa3d9c027f801985
     - git+https://github.com/poldracklab/pydeface@6ec916c2dc4595ebf1c998080328b5c31fbb8edd

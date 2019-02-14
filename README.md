@@ -9,22 +9,10 @@ complete description of your analysis software.
 
 # Usage (on the CBU imaging system)
 
-
-TCSH / CSH shells (CBU standard - put this in your ~/.cshrc file):
-
-```
-source /imaging/local/software/centos7/anaconda3/etc/profile.d/conda.csh
-```
-
-BASH (it's better - put this in your ~/.bashrc file):
-```
-. /imaging/local/software/centos7/anaconda3/etc/profile.d/conda.sh
-```
-
-Then all you have to do is
+If you've never used conda before, you may have to do `conda init`. Then it's on to
 
 ```
-conda activate neuroconda_1_3
+conda activate --stack neuroconda_1_4
 ```
 
 (Note that it is -not- recommended to put the above line in your login script since this
@@ -40,14 +28,14 @@ jupyter nbextensions_configurator enable --user
 # Installing
 
 This environment is already available on the CBU imaging system, currently under
-/imaging/local/software/centos7/anaconda3. You shouldn't have to install it yourself
+/imaging/local/software/miniconda/envs. You shouldn't have to install it yourself
 (and if you do you may need to change the prefix setting).
 
 If you are installing elsewhere, it's a simple matter of
 
 ```
 conda env create -f neuroconda.yaml --name neuroconda_mine
-conda activate neuroconda_mine
+conda activate --stack neuroconda_mine
 ```
 You may then want to copy over the environment variables (assuming you are in the repo
 root):
