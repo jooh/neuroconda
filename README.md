@@ -46,7 +46,7 @@ install it yourself (and if you do you may need to change the prefix setting).
 
 If you are installing elsewhere, it's a simple matter of
 
-```
+```sh
 conda env create -f neuroconda.yaml --name neuroconda_mine
 conda activate --stack neuroconda_mine
 ```
@@ -54,7 +54,7 @@ conda activate --stack neuroconda_mine
 You may then want to copy over the environment variables (assuming you are in the repo
 root and you have activated the environment):
 
-```
+```sh
 rsync -av --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
 ```
 
