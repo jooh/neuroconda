@@ -11,18 +11,32 @@ complete description of your analysis software.
 
 If you've never used conda before, you may have to do `conda init`. Then it's on to
 
-```
+```sh
 conda activate --stack neuroconda_1_4
 ```
 
 (Note that it is -not- recommended to put the above line in your login script since this
 can cause conflicts with e.g. vncserver.)
 
+## Jupyter Notebook extensions
 For first-time users, you may also want to enable the [jupyter notebook
 extensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions) with
 
-```
+```sh
 jupyter nbextensions_configurator enable --user
+```
+
+## Pycortex initial configuration
+You will also have problems with pycortex, which looks for file paths in the (invalid) build
+directory instead of the final install directory. Work around this by first importing
+pycortex to generate the default config, and then editing it to look for the subject database
+and colormaps in the correct location (note that if you are using this in a centralised
+install at e.g. CBU, you may want the subject database to be somewhere you have write access
+instead):
+
+```sh
+python -c "import cortex"
+sed -i 's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'"$CONDA_PREFIX"'@g' ~/.config/pycortex/options.cfg
 ```
 
 # Installing
@@ -32,7 +46,7 @@ install it yourself (and if you do you may need to change the prefix setting).
 
 If you are installing elsewhere, it's a simple matter of
 
-```
+```sh
 conda env create -f neuroconda.yaml --name neuroconda_mine
 conda activate --stack neuroconda_mine
 ```
@@ -40,7 +54,7 @@ conda activate --stack neuroconda_mine
 You may then want to copy over the environment variables (assuming you are in the repo
 root and you have activated the environment):
 
-```
+```sh
 rsync -av --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
 ```
 
