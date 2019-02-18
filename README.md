@@ -50,16 +50,17 @@ This functionality is mainly useful for the CBU imaging setup, where nothing is 
 path by default (and we want to be able to increment the version of these dependencies
 together with the conda environment releases).
 
-# Dependencies
-We add the following packages to the PATH while activating the environment. You would
-need to install these packages yourself to mirror the CBU setup (and change the install
-locations in [env_vars.sh](/etc/conda/activate.d/env_vars.sh) and/or
-[env_vars.csh](/etc/conda/activate.d/env_vars.csh) to match):
+# Optional shell environment dependencies
+To make full use of the packages in the environment, you may want the following on your
+system path:
 
 * SPM 12 / Matlab r2018a
 * ANTS
 * Freesurfer
 * FSL
+
+Historically we tried to set these to specific versions by manipulating the user's path
+during `conda activate`, but this turned out to be a bad idea (see #1). 
 
 # FAQ
 * _Can I use it on Mac or Windows?_ No. We use multiple packages that are only available
