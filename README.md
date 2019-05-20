@@ -47,7 +47,7 @@ install it yourself (and if you do you may need to change the prefix setting).
 If you are installing elsewhere, it's a simple matter of
 
 ```sh
-conda env create -f neuroconda.yaml --name neuroconda_mine
+conda env create -f neuroconda.yml --name neuroconda_mine
 conda activate --stack neuroconda_mine
 ```
 
