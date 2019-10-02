@@ -91,7 +91,7 @@ to point to your site-specific certificate.
 * _I can't find package *X*_ Pull requests are welcome! We aim for inclusivity, so
   barring conflicting dependencies anything neuro-related goes.
 * _This is not how you're meant to use environments_ That's not a question, but you're
-  right. If you're a developer you probably want to a separate environment for each
+  right. If you're a developer you probably want to use a separate environment for each
   project you work on rather than a single monolith. But if you're a data analyst, you
   may value productivity and easy reproducibility over control over the exact package
   versions you use. Neuroconda is aimed at the latter group, much like Anaconda.
