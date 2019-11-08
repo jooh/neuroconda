@@ -74,7 +74,15 @@ system path:
 * FSL
 
 Historically we tried to set these to specific versions by manipulating the user's path
-during `conda activate`, but this turned out to be a bad idea (see #1). 
+during `conda activate`, but this turned out to be a bad idea (see #1).
+
+# Dealing with firewall issues with HTTPS / SSL connections in git, conda, urllib3
+If, like us, you are unlucky enough to sit behind a firewall with HTTPS inspection, you
+will need need to set a few environment variables to get HTTPS connectivity for git and
+packages that depend on urllib3 / requests. I recommend
+setting [`REQUESTS_CA_BUNDLE`](https://stackoverflow.com/a/37447847/3375155) and 
+[`GIT_SSL_CAINFO`](https://www.git-scm.com/docs/git-config/#Documentation/git-config.txt-httpsslCAInfo)
+to point to your site-specific certificate.
 
 # FAQ
 * _Can I use it on Mac or Windows?_ No. We use multiple packages that are only available
@@ -83,7 +91,7 @@ during `conda activate`, but this turned out to be a bad idea (see #1).
 * _I can't find package *X*_ Pull requests are welcome! We aim for inclusivity, so
   barring conflicting dependencies anything neuro-related goes.
 * _This is not how you're meant to use environments_ That's not a question, but you're
-  right. If you're a developer you probably want to a separate environment for each
+  right. If you're a developer you probably want to use a separate environment for each
   project you work on rather than a single monolith. But if you're a data analyst, you
   may value productivity and easy reproducibility over control over the exact package
   versions you use. Neuroconda is aimed at the latter group, much like Anaconda.
