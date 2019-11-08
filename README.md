@@ -12,7 +12,7 @@ complete description of your analysis software.
 If you've never used conda before, you may have to do `conda init`. Then it's on to
 
 ```sh
-conda activate --stack neuroconda_1_4
+conda activate --stack neuroconda_1_5
 ```
 
 (Note that it is -not- recommended to put the above line in your login script since this
@@ -27,12 +27,12 @@ jupyter nbextensions_configurator enable --user
 ```
 
 ## Pycortex initial configuration
-You will also have problems with pycortex, which looks for file paths in the (invalid) build
-directory instead of the final install directory. Work around this by first importing
-pycortex to generate the default config, and then editing it to look for the subject database
-and colormaps in the correct location (note that if you are using this in a centralised
-install at e.g. CBU, you may want the subject database to be somewhere you have write access
-instead):
+You will also have problems with pycortex, which looks for file paths in the (invalid)
+build directory instead of the final install directory. Work around this by first
+importing pycortex to generate the default config, and then editing it to look for the
+subject database and colormaps in the correct location (note that if you are using this
+in a centralised install at e.g. CBU, you may want the subject database to be somewhere
+you have write access instead):
 
 ```sh
 python -c "import cortex"
@@ -47,12 +47,12 @@ install it yourself (and if you do you may need to change the prefix setting).
 If you are installing elsewhere, it's a simple matter of
 
 ```sh
-conda env create -f neuroconda.yml --name neuroconda_mine
-conda activate --stack neuroconda_mine
+conda env create -f neuroconda.yml --name neuroconda_1_5
+conda activate neuroconda_1_5
 ```
 
-You may then want to copy over the environment variables (assuming you are in the repo
-root and you have activated the environment):
+You may then want to copy over the shell environment variables (assuming you are in the
+repo root and you have activated the environment):
 
 ```sh
 rsync -av --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
@@ -64,29 +64,35 @@ This functionality is mainly useful for the CBU imaging setup, where nothing is 
 path by default (and we want to be able to increment the version of these dependencies
 together with the conda environment releases).
 
+
+***Please note that this shell environment activation code only works in bash and other
+sh-derived shells. This is a known bug in conda, which can be tracked in [this
+issue](https://github.com/conda/conda/issues/9304).***
+
 # Optional shell environment dependencies
 To make full use of the packages in the environment, you may want the following on your
 system path:
 
-* SPM 12 / Matlab r2018a
+* SPM 12 / Matlab r2019a
 * ANTS
 * Freesurfer
 * FSL
 
-Historically we tried to set these to specific versions by manipulating the user's path
-during `conda activate`, but this turned out to be a bad idea (see #1).
+At CBU, we prefer to add these to the path during conda activate in order to control
+which versions are used with a particular neuroconda release (see Installing above).
 
 # Dealing with firewall issues with HTTPS / SSL connections in git, conda, urllib3
 If, like us, you are unlucky enough to sit behind a firewall with HTTPS inspection, you
 will need need to set a few environment variables to get HTTPS connectivity for git and
-packages that depend on urllib3 / requests. I recommend
-setting [`REQUESTS_CA_BUNDLE`](https://stackoverflow.com/a/37447847/3375155) and 
+packages that depend on urllib3 / requests. I recommend setting
+[`REQUESTS_CA_BUNDLE`](https://stackoverflow.com/a/37447847/3375155) and
 [`GIT_SSL_CAINFO`](https://www.git-scm.com/docs/git-config/#Documentation/git-config.txt-httpsslCAInfo)
-to point to your site-specific certificate.
+to point to your site-specific certificate. You may also want to add your certificate to
+the ssl_verify option in your .condarc file.
 
 # FAQ
-* _Can I use it on Mac or Windows?_ No. We use multiple packages that are only available
-  under Linux on Conda. You could probably put the environment into a
+* _Can I use neuroconda on Mac or Windows?_ No. We use multiple packages that are only
+  available under Linux on Conda. You could probably put the environment into a
   [Neurodocker](https://github.com/kaczmarj/neurodocker) container though.
 * _I can't find package *X*_ Pull requests are welcome! We aim for inclusivity, so
   barring conflicting dependencies anything neuro-related goes.
@@ -95,6 +101,12 @@ to point to your site-specific certificate.
   project you work on rather than a single monolith. But if you're a data analyst, you
   may value productivity and easy reproducibility over control over the exact package
   versions you use. Neuroconda is aimed at the latter group, much like Anaconda.
+* _Are neuroconda environments fully reproducible?_ No, but we try! Neuroconda pins the
+  version of each package it installs, and tries to avoid implicit dependencies. But
+  there is nothing to stop the upstream host (pypi, conda-forge, etc) from changing what
+  code that version corresponds to next time you build the environment. If you want to
+  have stronger guarantees of exact reproducibility you probably need to bundle the
+  environment into a container image.
 
 # Problems
 Please contact Johan Carlin or open an issue.
