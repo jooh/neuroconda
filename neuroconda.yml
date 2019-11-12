@@ -9,6 +9,7 @@ dependencies:
   - _tflow_select=2.3.0
   - absl-py=0.6.1
   - alabaster=0.7.12
+  - altair
   - aniso8601=4.1.0
   - apipkg=1.5
   - appdirs=1.4.3
@@ -81,7 +82,6 @@ dependencies:
   - font-ttf-ubuntu=0.83
   - fontconfig=2.13.1
   - fonts-anaconda=1
-  - fonts-continuum=1
   - freetype=2.9.1
   - fsleyes=0.27.3
   - fsleyes-props=1.6.5
@@ -130,8 +130,8 @@ dependencies:
   - indexed_gzip=0.8.10
   - intel-openmp=2019.1
   - ipykernel=5.1.0
-  - ipython=7.2.0
-  - ipython_genutils=0.2.0
+  - ipython
+  - ipython_genutils
   - ipywidgets=7.4.2
   - iso8601=0.1.12
   - isodate=0.6.0
@@ -144,17 +144,17 @@ dependencies:
   - jpeg=9c
   - jsmin=2.2.2
   - jsonschema=3.0.0a3
-  - jupyter=1.0.0
-  - jupyter_client=5.2.4
-  - jupyter_console=6.0.0
-  - jupyter_contrib_core=0.3.3
-  - jupyter_contrib_nbextensions=0.5.1
-  - jupyter_core=4.4.0
-  - jupyter_highlight_selected_word=0.2.0
-  - jupyter_latex_envs=1.4.4
-  - jupyter_nbextensions_configurator=0.4.1
-  - jupyterlab=0.35.6
-  - jupyterlab_server=0.2.0
+  - jupyter
+  - jupyter_client
+  - jupyter_console
+  - jupyter_contrib_core
+  - jupyter_contrib_nbextensions
+  - jupyter_core
+  - jupyter_highlight_selected_word
+  - jupyter_latex_envs
+  - jupyter_nbextensions_configurator
+  - jupyterlab
+  - jupyterlab_server
   - keepalive=0.5
   - keras=2.2.4
   - keras-applications=1.0.7
@@ -227,8 +227,8 @@ dependencies:
   - nettle=3.3
   - networkx=2.1
   - neurdflib=5.0.0.post1
-  - nibabel=2.3.2
-  - nilearn=0.5.2
+  - nibabel
+  - nilearn
   - nipype=1.2.0
   - nose=1.3.7
   - notebook=5.7.4
@@ -241,7 +241,7 @@ dependencies:
   - openjdk=8.0.192
   - openssl=1.0.2p
   - packaging=18.0
-  - pandas=0.23.4
+  - pandas
   - pandoc=2.5
   - pandocfilters=1.4.2
   - pango=1.40.14
@@ -298,7 +298,7 @@ dependencies:
   - pytest-forked=1.0.2
   - pytest-runner=5.1
   - pytest-xdist=1.27.0
-  - python=3.7.1
+  - python
   - python-dateutil=2.7.5
   - python-utils=2.3.0
   - pytz=2018.9
@@ -560,6 +560,7 @@ dependencies:
   - setuptools=39.1.0
   - shapely=1.6.4
   - simplejson=3.16.0
+  - simplegeneric
   - sip=4.18.1
   - six=1.12.0
   - smmap2=2.0.5
@@ -570,8 +571,8 @@ dependencies:
   - sphinx=1.8.3
   - sphinx_rtd_theme=0.4.2
   - sphinxcontrib-websupport=1.1.0
-  - spyder=3.3.2
-  - spyder-kernels=0.3.0
+  - spyder
+  - spyder-kernels
   - sqlite=3.26.0
   - statsmodels=0.9.0
   - suitesparse=5.2.0
@@ -579,11 +580,11 @@ dependencies:
   - sympy=1.3
   - tbb=2019.7
   - tblib=1.3.2
-  - tensorboard=1.13.1
-  - tensorflow=1.13.1
-  - tensorflow-base=1.13.1
-  - tensorflow-estimator=1.13.0
-  - tensorflow-probability=0.6.0
+  - tensorboard
+  - tensorflow
+  - tensorflow-base
+  - tensorflow-estimator
+  - tensorflow-probability
   - termcolor=1.1.0
   - terminado=0.8.1
   - testpath=0.4.2
