@@ -42,10 +42,10 @@ conda prefix, which is a full path to the desired install location).
 
 ## Install at CBU
 
-A central install of Neuroconda is available (do `conda env list` and you should
-see the environment). But if you want to your own install (e.g. to add or
-update packages yourself), try `make install-cbu`, which takes care of putting a few
-additional non-conda packages on your path (e.g. Freesurfer, FSL, ANTs).
+A central install of Neuroconda is available (do `conda env list` and you should see the
+environment). But if you want your own install (e.g. to add or update packages
+yourself), try `make install-cbu`, which takes care of putting a few additional
+non-conda packages on your path (e.g. Freesurfer, FSL, ANTs).
 
 ## Pycortex initial configuration
 If you don't follow the make install route you will have problems with pycortex, which
@@ -61,7 +61,7 @@ sed -i 's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'"$CONDA_PREFI
 ```
 
 ## Handling non-conda dependencies
-If you want to put particular non-conda packages on your path You may then want to copy
+If you want to put particular non-conda packages on your path you may then want to copy
 over the shell environment variables (assuming you are in the repo root and you have
 activated the environment):
 
@@ -122,11 +122,11 @@ the ssl_verify option in your .condarc file.
 Please contact Johan Carlin or open an issue.
 
 # Contributing
-Contributors are welcome! Adding a package is done like so:
+Yes please! If you just want to see a new package, you would take the following steps:
 
-1. Add the package to neuroconda_basepackages.yml, ideally without any version pinning
+1. Add the package to neuroconda_basepackages.yml, ideally without any version pinning.
 2. run `make update` to re-generate a new neuroconda.yml file (including all
-   dependencies)
+   dependencies).
 3. Manually intervene to ensure that a) any non-PyPi pip packages have the correct
    install path (by plugging in the path from neuroconda_basepackages.yml), b) there are
    no further pip packages installed that could have been installed with conda instead
@@ -145,6 +145,7 @@ post](https://www.anaconda.com/understanding-and-improving-condas-performance/).
 the pycroptosat sat_solver in my .condarc, which seems to help a bit.
 
 ## TO DO
-* neurodocker container
 * fully automate build process
+* tests
+* neurodocker container
 * CI
