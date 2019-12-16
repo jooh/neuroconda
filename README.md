@@ -1,75 +1,85 @@
-Conda environment specification for MRC CBU, Cambridge, UK. This is a very inclusive
-environment that covers pretty much all neuroimaging-related packages you might want to
-use. Please let us know if you want to see any additional packages.
+A Conda environment for neuroscience. This is a very inclusive environment that covers
+pretty much all neuroimaging-related packages you might want to use. Please let us know
+if you want to see any additional packages.
 
-The idea with this repo is to provide an open specification of the environment that was
-used to run a particular analysis on the CBU imaging system. If you report that you used
-a particular release of this environment in your manuscript, you are providing a fairly
-complete description of your analysis software.
+The idea with this repo is to provide an open specification of the computing environment
+that was used to run a particular analysis. If you report that you used a particular
+release of this environment in your manuscript, you are providing a fairly complete
+description of your analysis software.
 
-# Usage (on the CBU imaging system)
+# Usage
 
 If you've never used conda before, you may have to do `conda init`. Then it's on to
 
 ```sh
-conda activate --stack neuroconda_1_5
+conda activate neuroconda_1_5
 ```
 
-(Note that it is -not- recommended to put the above line in your login script since this
-can cause conflicts with e.g. vncserver.)
+As convenient as it may be, it is -not- recommended to activate the environment in your
+shell login script since this can cause conflicts with e.g. vncserver and other packages
+outside the environment, because you are shadowing system libraries.
 
-## Jupyter Notebook extensions
-For first-time users, you may also want to enable the [jupyter notebook
-extensions](https://github.com/ipython-contrib/jupyter_contrib_nbextensions) with
+# Install
 
-```sh
-jupyter nbextensions_configurator enable --user
+The recommended install route is through
+
+``` sh
+make install
 ```
+This will take care of some basic setup, including a fix for Pycortex (see below) and
+enabling the jupyterlab code formatter extension. Alternatively, you can just create the
+environment as usual with conda
+
+``` sh
+conda env create -f neuroconda.yml
+```
+
+To install in a custom location, set the PREFIX environment variable, e.g.
+`PREFIX=~/temp/ make install`.
+
+Note that the neuroconda environment will be created *inside* this directory (unlike the
+conda prefix, which is a full path to the desired install location).
+
+## Install at CBU
+
+A central install of Neuroconda is available (do `conda env list` and you should
+see the environment). But if you want to your own install (e.g. to add or
+update packages yourself), try `make install-cbu`, which takes care of putting a few
+additional non-conda packages on your path (e.g. Freesurfer, FSL, ANTs).
 
 ## Pycortex initial configuration
-You will also have problems with pycortex, which looks for file paths in the (invalid)
-build directory instead of the final install directory. Work around this by first
-importing pycortex to generate the default config, and then editing it to look for the
-subject database and colormaps in the correct location (note that if you are using this
-in a centralised install at e.g. CBU, you may want the subject database to be somewhere
-you have write access instead):
+If you don't follow the make install route you will have problems with pycortex, which
+looks for file paths in the (invalid) build directory instead of the final install
+directory. Work around this by first importing pycortex to generate the default config,
+and then editing it to look for the subject database and colormaps in the correct
+location (note that if you are using this in a centralised install at e.g. CBU, you may
+want the subject database to be somewhere you have write access instead):
 
 ```sh
 python -c "import cortex"
 sed -i 's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'"$CONDA_PREFIX"'@g' ~/.config/pycortex/options.cfg
 ```
 
-# Installing
-
-This environment is already available on the CBU imaging system. You shouldn't have to
-install it yourself (and if you do you may need to change the prefix setting).
-
-If you are installing elsewhere, it's a simple matter of
+## Handling non-conda dependencies
+If you want to put particular non-conda packages on your path You may then want to copy
+over the shell environment variables (assuming you are in the repo root and you have
+activated the environment):
 
 ```sh
-conda env create -f neuroconda.yml --name neuroconda_1_5
-conda activate neuroconda_1_5
+rsync -rv --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
 ```
 
-You may then want to copy over the shell environment variables (assuming you are in the
-repo root and you have activated the environment):
-
-```sh
-rsync -av --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
-```
-
-The last bit is optional - if you already have the packages you want to use on your path
+The install-cbu target in the Makefile does this for you. If you already have the packages you want to use on your path
 (e.g. through adding them in your shell login script) you don't need to add them again.
 This functionality is mainly useful for the CBU imaging setup, where nothing is on the
 path by default (and we want to be able to increment the version of these dependencies
 together with the conda environment releases).
 
-
 ***Please note that this shell environment activation code only works in bash and other
 sh-derived shells. This is a known bug in conda, which can be tracked in [this
 issue](https://github.com/conda/conda/issues/9304).***
 
-# Optional shell environment dependencies
+## Suggested non-conda dependencies
 To make full use of the packages in the environment, you may want the following on your
 system path:
 
@@ -79,7 +89,7 @@ system path:
 * FSL
 
 At CBU, we prefer to add these to the path during conda activate in order to control
-which versions are used with a particular neuroconda release (see Installing above).
+which versions are used with a particular neuroconda release (see Install above).
 
 # Dealing with firewall issues with HTTPS / SSL connections in git, conda, urllib3
 If, like us, you are unlucky enough to sit behind a firewall with HTTPS inspection, you
@@ -110,3 +120,31 @@ the ssl_verify option in your .condarc file.
 
 # Problems
 Please contact Johan Carlin or open an issue.
+
+# Contributing
+Contributors are welcome! Adding a package is done like so:
+
+1. Add the package to neuroconda_basepackages.yml, ideally without any version pinning
+2. run `make update` to re-generate a new neuroconda.yml file (including all
+   dependencies)
+3. Manually intervene to ensure that a) any non-PyPi pip packages have the correct
+   install path (by plugging in the path from neuroconda_basepackages.yml), b) there are
+   no further pip packages installed that could have been installed with conda instead
+   (this happens when a pip package has a dependency that wasn't already satisfied by
+   the conda packages). If so, add them to the list in neuroconda_basebackages.yml and
+   repeat the update process.
+4. Commit, push and submit a pull request.
+5. Maintainer to merge and cut new releases, after incrementing the version in
+   neuroconda_basepackages.yml and Makefile.
+
+Maintaining large conda environments is hard because the conda solver continues to
+exhibit performance issues. [This bioconda
+issue](https://github.com/bioconda/bioconda-recipes/issues/13774) has some useful
+suggestions for workarounds, as does [this continuum blog
+post](https://www.anaconda.com/understanding-and-improving-condas-performance/). I use
+the pycroptosat sat_solver in my .condarc, which seems to help a bit.
+
+## TO DO
+* neurodocker container
+* fully automate build process
+* CI
