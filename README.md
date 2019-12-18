@@ -146,6 +146,7 @@ the pycroptosat sat_solver in my .condarc, which seems to help a bit.
 
 ## TO DO
 * fully automate build process
-* tests
+* tests (probably just try importing a few packages that are known to be tricky, e.g.
+  tensorflow, pycortex)
 * neurodocker container
 * CI
