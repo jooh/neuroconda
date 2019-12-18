@@ -1,4 +1,10 @@
-#!/bin/csh
+#!/bin/csh -e
+# shell script wrapper for Neuroconda at MRC CBU, University of Cambridge. This script
+# takes care of adding non-conda packages to the system path before activating the
+# environment. This helps ensure that non-conda packages are pinned to specific versions
+# for reproducibility.
+#
+# Usage: source neuroconda.csh in your login shell session.
 
 setenv NEUROCONDA_OLDPATH "$PATH"
 if ( ! $?MATLABPATH ) then
@@ -27,4 +33,8 @@ source ${FREESURFER_HOME}/SetUpFreeSurfer.csh
 # misc
 setenv PATH "/imaging/local/software/centos7/ants/bin/ants/bin:$PATH"
 
-setenv PATHALT "$PATH"
+# isolate additions from this script so we can nuke them later
+setenv NEUROCONDA_NEWPATH `echo "$PATH" | sed 's@'"$NEUROCONDA_OLDPATH"'@@g'`
+
+conda activate neuroconda_1_5
+echo Welcome to neuroconda 1.5, running at "$CONDA_PREFIX"

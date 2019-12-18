@@ -40,12 +40,6 @@ To install in a custom location, set the PREFIX environment variable, e.g.
 Note that the neuroconda environment will be created *inside* this directory (unlike the
 conda prefix, which is a full path to the desired install location).
 
-## Install at CBU
-
-A central install of Neuroconda is available (do `conda env list` and you should see the
-environment). But if you want your own install (e.g. to add or update packages
-yourself), try `make install-cbu`, which takes care of putting a few additional
-non-conda packages on your path (e.g. Freesurfer, FSL, ANTs).
 
 ## Pycortex initial configuration
 If you don't follow the make install route you will have problems with pycortex, which
@@ -60,25 +54,6 @@ python -c "import cortex"
 sed -i 's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'"$CONDA_PREFIX"'@g' ~/.config/pycortex/options.cfg
 ```
 
-## Handling non-conda dependencies
-If you want to put particular non-conda packages on your path you may then want to copy
-over the shell environment variables (assuming you are in the repo root and you have
-activated the environment):
-
-```sh
-rsync -rv --exclude '*.swp' etc/ "$CONDA_PREFIX"/etc/
-```
-
-The install-cbu target in the Makefile does this for you. If you already have the packages you want to use on your path
-(e.g. through adding them in your shell login script) you don't need to add them again.
-This functionality is mainly useful for the CBU imaging setup, where nothing is on the
-path by default (and we want to be able to increment the version of these dependencies
-together with the conda environment releases).
-
-***Please note that this shell environment activation code only works in bash and other
-sh-derived shells. This is a known bug in conda, which can be tracked in [this
-issue](https://github.com/conda/conda/issues/9304).***
-
 ## Suggested non-conda dependencies
 To make full use of the packages in the environment, you may want the following on your
 system path:
@@ -88,8 +63,15 @@ system path:
 * Freesurfer
 * FSL
 
-At CBU, we prefer to add these to the path during conda activate in order to control
-which versions are used with a particular neuroconda release (see Install above).
+In past releases we used conda's [env_vars.{sh,csh}
+functionality](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#saving-environment-variables)
+to add non-conda packages to the path, but this part of conda is profoundly broken at
+the moment ([csh works not at all](https://github.com/conda/conda/issues/9304),
+[restoring the path during deactivate doesn't
+work](https://github.com/conda/conda/issues/3915)). The workaround for now is to create a shell script
+wrapper that takes care of adding non-conda packages to the path *before* activating the
+environment. For examples that we use at CBU, see [neuroconda.sh](neuroconda.sh) and
+[neuroconda.csh](neuroconda.csh).
 
 # Dealing with firewall issues with HTTPS / SSL connections in git, conda, urllib3
 If, like us, you are unlucky enough to sit behind a firewall with HTTPS inspection, you
@@ -116,7 +98,8 @@ the ssl_verify option in your .condarc file.
   there is nothing to stop the upstream host (pypi, conda-forge, etc) from changing what
   code that version corresponds to next time you build the environment. If you want to
   have stronger guarantees of exact reproducibility you probably need to bundle the
-  environment into a container image.
+  environment into a container image. This would also take care of non-conda
+  dependencies.
 
 # Problems
 Please contact Johan Carlin or open an issue.

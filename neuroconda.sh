@@ -1,4 +1,10 @@
-#!/bin/sh
+#!/bin/bash -e
+# shell script wrapper for Neuroconda at MRC CBU, University of Cambridge. This script
+# takes care of adding non-conda packages to the system path before activating the
+# environment. This helps ensure that non-conda packages are pinned to specific versions
+# for reproducibility.
+#
+# Usage: source neuroconda.sh in your login shell session.
 
 export NEUROCONDA_OLDPATH="$PATH"
 export NEUROCONDA_OLDMATLABPATH="$MATLABPATH"
@@ -20,3 +26,9 @@ source ${FREESURFER_HOME}/SetUpFreeSurfer.sh
 
 # misc
 export PATH="/imaging/local/software/centos7/ants/bin/ants/bin/:$PATH"
+
+# isolate additions from this script so we can nuke them later
+export NEUROCONDA_NEWPATH=`echo "$PATH" | sed 's@'"$NEUROCONDA_OLDPATH"'@@g'`
+
+conda activate neuroconda_1_5
+echo Welcome to neuroconda 1.5, running at "$CONDA_PREFIX"
