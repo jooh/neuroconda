@@ -8,42 +8,42 @@
 SHELL := /bin/bash
 # make sure bash exceptions propagate to make
 .SHELLFLAGS = -ec
-NEUROCONDA_VERSION = neuroconda_1_5
+NEUROCONDA_VERSION ?= neuroconda_1_5
+NEUROCONDA_YML ?= neuroconda.yml
 
-# TODO
-# handle overwrite Dcm2bids github install (currently the only one).
-
-# TODO - test make install
 # default to first environment directory (tends to be user in centralized installs)
 PREFIX ?= $(shell echo `conda info | grep "envs directories" | cut -d ":" -f 2`/)
+
+NEUROCONDA_PATH = $(PREFIX)$(NEUROCONDA_VERSION)
+NEUROCONDA_PATH_BUILD = $(PREFIX)neuroconda_build
 
 install: clean-install
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
-	conda env create -f neuroconda.yml --prefix $(PREFIX)$(NEUROCONDA_VERSION) ;\
-	conda activate $(PREFIX)$(NEUROCONDA_VERSION) ;\
+	conda env create -f $(NEUROCONDA_YML) --prefix $(NEUROCONDA_PATH) ;\
+	conda activate $(NEUROCONDA_PATH) ;\
 	python -c "import cortex" ;\
 	sed -i \
-	's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'$(CONDA_PREFIX)'@g' \
+	's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'$(NEUROCONDA_PATH)'@g' \
 	~/.config/pycortex/options.cfg ;\
 	jupyter serverextension enable --py jupyterlab_code_formatter ;\
-	echo "neuroconda install completed at $(PREFIX)$(NEUROCONDA_VERSION)." ;\
+	echo "neuroconda install completed at $(NEUROCONDA_PATH)." ;\
 	}
 
 install-cbu: install
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
-	conda activate $(PREFIX)$(NEUROCONDA_VERSION) ;\
-	rsync -rv --exclude '*.swp' etc/ $(CONDA_PREFIX)/etc/ ;\
-	echo "neuroconda cbu-install completed at $(PREFIX)$(NEUROCONDA_VERSION)." ;\
+	conda activate $(NEUROCONDA_PATH) ;\
+	rsync -rv --exclude '*.swp' etc/ $(NEUROCONDA_PATH)/etc/ ;\
+	echo "neuroconda cbu-install completed at $(NEUROCONDA_PATH)." ;\
 	}
 
 update: clean-update
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
-	conda env create -f neuroconda_basepackages.yml --prefix $(PREFIX)neuroconda_build ;\
-	conda env export --prefix $(PREFIX)neuroconda_build -f neuroconda.yml --no-builds ;\
-	echo "neuroconda update completed, neuroconda.yml generated." ;\
+	conda env create -f neuroconda_basepackages.yml --prefix $(NEUROCONDA_PATH_BUILD) ;\
+	conda env export --prefix $(NEUROCONDA_PATH_BUILD) -f $(NEUROCONDA_YML) --no-builds ;\
+	echo "neuroconda update completed, $(NEUROCONDA_YML) generated." ;\
 	echo "**MANUAL EDITS TO DCM2BIDS PIP ENTRY MAY BE REQUIRED BEFORE MAKE INSTALL.**" ;\
 	}
 
@@ -51,7 +51,7 @@ clean-update:
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
 	conda activate base ;\
-	conda env remove -q -y --prefix $(PREFIX)neuroconda_build ;\
+	conda env remove -q -y --prefix $(NEUROCONDA_PATH_BUILD) ;\
 	echo "neuroconda clean-update completed, build environment removed." ;\
 	}
 
@@ -59,7 +59,14 @@ clean-install:
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
 	conda activate base ;\
-	conda env remove -q -y --prefix $(PREFIX)$(NEUROCONDA_VERSION) ;\
+	conda env remove -q -y --prefix $(NEUROCONDA_PATH) ;\
 	echo "neuroconda clean-install completed, \
-	neuroconda install at $(PREFIX)$(NEUROCONDA_VERSION) removed." ;\
+	neuroconda install at $(NEUROCONDA_PATH) removed." ;\
+	}
+
+test:
+	{ \
+	source $(conda info --base)/etc/profile.d/conda.sh ;\
+	conda activate $(NEUROCONDA_PATH) ;\
+	echo $(NEUROCONDA_PATH) ;\
 	}
