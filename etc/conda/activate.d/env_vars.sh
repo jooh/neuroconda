@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash -e
+# currently broken, awaiting fixes for
+# https://github.com/MRC-CBU/neuroconda/issues/1
+# https://github.com/conda/conda/issues/3915
 
 export NEUROCONDA_OLDPATH="$PATH"
 export NEUROCONDA_OLDMATLABPATH="$MATLABPATH"
@@ -20,3 +23,6 @@ source ${FREESURFER_HOME}/SetUpFreeSurfer.sh
 
 # misc
 export PATH="/imaging/local/software/centos7/ants/bin/ants/bin/:$PATH"
+
+# isolate additions from this script so we can nuke them later
+export NEUROCONDA_NEWPATH=`echo "$PATH" | sed 's@'"$NEUROCONDA_OLDPATH"'@@g'`
