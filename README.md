@@ -130,7 +130,7 @@ Please contact Johan Carlin or open an issue.
 
 # For developers
 Contributions are welcome! The basic design of neuroconda is to list desired packages in
-[neuroconda_basepackages.yml](neuroconda_basepackages.yml) with mininal version pinning.
+[neuroconda_basepackages.yml](neuroconda_basepackages.yml) with minimal version pinning.
 The [Makefile](Makefile) then takes care of constructing a new
 [neuroconda.yml](neuroconda.yml) by building an environment and exporting *with* pinning
 (but no builds because these tend to go missing on conda-forge). The benefits of this
@@ -167,6 +167,7 @@ post](https://www.anaconda.com/understanding-and-improving-condas-performance/).
 the pycroptosat sat_solver in my .condarc, which seems to help a bit.
 
 ## Other worthwhile contributions
+* deactivation shell wrapper scripts
 * tests (probably just try importing a few packages that are known to be tricky, e.g.
   tensorflow, pycortex)
 * neurodocker container
