@@ -5,7 +5,8 @@ if you want to see any additional packages.
 The idea with this repo is to provide an open specification of the computing environment
 that was used to run a particular analysis. If you report that you used a particular
 release of this environment in your manuscript, you are providing a fairly complete
-description of your analysis software.
+description of your analysis software. And if you share analysis code, there is a much
+better chance that someone else will be able to run it and reproduce your results.
 
 # Usage
 
