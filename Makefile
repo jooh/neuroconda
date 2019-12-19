@@ -22,7 +22,7 @@ $(NEUROCONDA_PATH): $(NEUROCONDA_YML)
 	conda activate $(NEUROCONDA_PATH) ;\
 	python -c "import cortex" ;\
 	sed -i \
-	's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'$(NEUROCONDA_PATH)'@g' \
+	's@build/bdist.linux-x86_64/wheel/pycortex-.*data/data@'$(NEUROCONDA_PATH)'@g' \
 	~/.config/pycortex/options.cfg ;\
 	jupyter serverextension enable --py jupyterlab_code_formatter ;\
 	echo "neuroconda install completed at $(NEUROCONDA_PATH)." ;\

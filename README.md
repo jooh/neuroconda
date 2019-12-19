@@ -73,15 +73,15 @@ want the subject database to be somewhere you have write access instead):
 
 ```sh
 python -c "import cortex"
-sed -i 's@build/bdist.linux-x86_64/wheel/pycortex-1.0.2.data/data@'"$CONDA_PREFIX"'@g' ~/.config/pycortex/options.cfg
+sed -i 's@build/bdist.linux-x86_64/wheel/pycortex-.*data/data@'"$CONDA_PREFIX"'@g' ~/.config/pycortex/options.cfg
 ```
 
 ## Suggested non-conda dependencies
 To make full use of the packages in the environment, you may want the following on your
 system path:
 
-* SPM 12 / Matlab r2019a
-* ANTS
+* SPM / Matlab
+* ANTs
 * Freesurfer
 * FSL
 
