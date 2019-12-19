@@ -36,5 +36,8 @@ setenv PATH "/imaging/local/software/centos7/ants/bin/ants/bin:$PATH"
 # isolate additions from this script so we can nuke them later
 setenv NEUROCONDA_NEWPATH `echo "$PATH" | sed 's@'"$NEUROCONDA_OLDPATH"'@@g'`
 
-conda activate neuroconda_1_5
-echo Welcome to neuroconda 1.5, running at "$CONDA_PREFIX"
+# work out what the conda version is
+setenv NEUROCONDA_VERSION `cat neuroconda.yml | tr -s ' ' | grep -o 'name: .*' | cut -d ' ' -f 2`
+
+conda activate "$NEUROCONDA_VERSION"
+echo Welcome to "$NEUROCONDA_VERSION", running at "$CONDA_PREFIX"
