@@ -1,4 +1,4 @@
-name: neuroconda_1_5
+name: neuroconda_build
 channels:
   - conda-forge
   - r
@@ -322,7 +322,9 @@ dependencies:
   - fasteners
     #- mpi4py brainiak dependency
   - networkx=2.1 # one of the pip packages pins this
+  - pigz
   - pip:
+    - filelock # conda-forge has 3.0.10, but another pip package needs 3.0.12
     - bids-validator
     - ciftify
     - citeproc-py
