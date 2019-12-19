@@ -15,7 +15,7 @@ PREFIX ?= $(shell echo `conda info | grep "envs directories" | cut -d ":" -f 2`/
 NEUROCONDA_PATH = $(PREFIX)$(NEUROCONDA_VERSION)
 NEUROCONDA_PATH_BUILD = $(PREFIX)neuroconda_build
 
-$(NEUROCONDA_PATH): $(NEUROCONDA_YML)
+$(NEUROCONDA_PATH):
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
 	conda env create --force -f $(NEUROCONDA_YML) --prefix $(NEUROCONDA_PATH) ;\

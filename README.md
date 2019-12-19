@@ -44,20 +44,16 @@ leave the non-conda dependencies on your path).
 
 # Install
 
-The recommended install route is through
+The recommended install route is through `make`.
 
-``` sh
-make
-```
-
-To install in a custom location, set the PREFIX environment variable, e.g.
+To install in a custom location, set the PREFIX environment variable, e.g. in bash,
 `PREFIX=~/temp/ make`. Note that the neuroconda environment will be created *inside*
 this directory (unlike the conda `prefix` argument, which is a full path to the desired
 install location).
 
-The make route takes care of some basic setup, including a fix for Pycortex (see below)
-and enabling the jupyterlab code formatter extension. Alternatively, you can just create
-the environment as usual with conda
+The make install route takes care of some basic setup, including a fix for Pycortex (see
+below) and enabling the jupyterlab code formatter extension. Alternatively, you can just
+create the environment as usual with conda
 
 ``` sh
 conda env create -f neuroconda.yml
@@ -77,8 +73,8 @@ sed -i 's@build/bdist.linux-x86_64/wheel/pycortex-.*data/data@'"$CONDA_PREFIX"'@
 ```
 
 ## Suggested non-conda dependencies
-To make full use of the packages in the environment, you may want the following on your
-system path:
+To make full use of the packages in the environment (especially nipype), you may want
+the following on your system path:
 
 * SPM / Matlab
 * ANTs
@@ -145,8 +141,8 @@ If you just want to see a new package, you would take the
 following steps:
 
 1. Add the package to neuroconda_basepackages.yml, ideally without any version pinning.
-2. run `make` to re-generate a new neuroconda.yml file (including all
-   dependencies).
+2. run `make update` to re-generate a new neuroconda.yml file (including all
+   dependencies) from neuroconda_basepackages.yml.
 3. Use e.g. `git diff` to check that the new neuroconda.yml does not contain any new 
    pip packages that could have been installed with conda instead (this happens when a
    pip package has a dependency that wasn't already satisfied by the conda packages). If
@@ -169,7 +165,7 @@ the pycroptosat sat_solver in my .condarc, which seems to help a bit.
 
 ## Other worthwhile contributions
 * deactivation shell wrapper scripts
-* tests (probably just try importing a few packages that are known to be tricky, e.g.
-  tensorflow, pycortex)
+* tests (probably just try importing a few packages that are known to be tricky or have
+  implicit dependencies, e.g. tensorflow, pycortex)
 * neurodocker container
 * CI
