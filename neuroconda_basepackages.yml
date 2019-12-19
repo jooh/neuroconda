@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - r
 dependencies:
-  - autograd
   - altair
   - black
   - bokeh
@@ -326,6 +325,7 @@ dependencies:
   - pigz
   - zarr
   - jax
+  - pyarrow
   - pip:
     - filelock # conda-forge has 3.0.10, but another pip package needs 3.0.12
     - bids-validator
