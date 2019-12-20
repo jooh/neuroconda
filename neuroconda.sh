@@ -30,8 +30,10 @@ export PATH="/imaging/local/software/centos7/ants/bin/ants/bin/:$PATH"
 # isolate additions from this script so we can nuke them later
 export NEUROCONDA_NEWPATH=`echo "$PATH" | sed 's@'"$NEUROCONDA_OLDPATH"'@@g'`
 
+# find script directory
+scriptdir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
 # work out what the conda version is
-export NEUROCONDA_VERSION=`cat neuroconda.yml | tr -s ' ' | grep -o 'name: .*' | cut -d ' ' -f 2`
+export NEUROCONDA_VERSION=`cat $scriptdir/neuroconda.yml | tr -s ' ' | grep -o 'name: .*' | cut -d ' ' -f 2`
 
 conda activate "$NEUROCONDA_VERSION"
 echo Welcome to "$NEUROCONDA_VERSION", running at "$CONDA_PREFIX"
