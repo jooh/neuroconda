@@ -30,6 +30,9 @@ source ${FSLDIR}/etc/fslconf/fsl.csh
 setenv FREESURFER_HOME "/imaging/local/software/freesurfer/6.0.0/x86_64"
 source ${FREESURFER_HOME}/SetUpFreeSurfer.csh
 
+# afni
+setenv PATH "/imaging/local/software/afni/v18.3.03/:$PATH"
+
 # misc
 setenv PATH "/imaging/local/software/centos7/ants/bin/ants/bin:$PATH"
 

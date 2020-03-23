@@ -24,6 +24,9 @@ source ${FSLDIR}/etc/fslconf/fsl.sh
 export FREESURFER_HOME="/imaging/local/software/freesurfer/6.0.0/x86_64"
 source ${FREESURFER_HOME}/SetUpFreeSurfer.sh
 
+# afni
+export PATH="/imaging/local/software/afni/v18.3.03/:$PATH"
+
 # misc
 export PATH="/imaging/local/software/centos7/ants/bin/ants/bin/:$PATH"
 
