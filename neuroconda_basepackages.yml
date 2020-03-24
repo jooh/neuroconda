@@ -344,7 +344,7 @@ dependencies:
     - duecredit
     - grabbit
     - heudiconv
-      # - brainiak - skip, incompatible with new numpy/scipy
+      # - brainiak - skip, incompatible with new pip
     - neurodocker
     - nistats
     - niworkflows
