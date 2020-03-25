@@ -15,6 +15,8 @@ PREFIX ?= $(shell echo `conda info | grep "envs directories" | cut -d ":" -f 2`/
 NEUROCONDA_PATH = $(PREFIX)$(NEUROCONDA_VERSION)
 NEUROCONDA_PATH_BUILD = $(PREFIX)neuroconda_build
 
+NEURODOCKER_VERSION ?= 0.6.0
+
 $(NEUROCONDA_PATH):
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
@@ -39,6 +41,15 @@ $(NEUROCONDA_YML): neuroconda_basepackages.yml
 	echo "neuroconda update completed, $(NEUROCONDA_YML) generated." ;\
 	}
 
+# TODO - other supporting neuro packages
+Dockerfile: $(NEUROCONDA_YML)
+	{ \
+	docker run --rm kaczmarj/neurodocker:$(NEURODOCKER_VERSION) generate docker \
+	--base=neurodebian:stretch --pkg-manager=apt \
+	--copy $(NEUROCONDA_YML) /opt/neuroconda.yml \
+	--miniconda create_env=neuroconda yaml_file=/opt/neuroconda.yml > Dockerfile ;\
+	}
+
 uninstall:
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
@@ -49,4 +60,5 @@ uninstall:
 # aliases
 install: $(NEUROCONDA_PATH)
 update: neuroconda.yml
+docker: Dockerfile
 .PHONY: update install uninstall
