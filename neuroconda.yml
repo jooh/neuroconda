@@ -56,7 +56,7 @@ dependencies:
   - cvxopt=1.2.4
   - cycler=0.10.0
   - cyrus-sasl=2.1.27
-  - cython=0.29.15
+  - cython=0.29.16
   - cytoolz=0.10.1
   - dask=2.12.0
   - dask-core=2.12.0
@@ -80,7 +80,7 @@ dependencies:
   - fasteners=0.14.1
   - fftw=3.3.8
   - flask=1.1.1
-  - flask-restful=0.3.7
+  - flask-restful=0.3.8
   - font-ttf-dejavu-sans-mono=2.37
   - font-ttf-inconsolata=2.001
   - font-ttf-source-code-pro=2.030
@@ -134,7 +134,7 @@ dependencies:
   - heapdict=1.0.1
   - html5lib=1.0.1
   - httpretty=0.9.7
-  - humanize=2.1.0
+  - humanize=2.2.0
   - icu=58.2
   - idna=2.9
   - imageio=2.8.0
@@ -221,6 +221,7 @@ dependencies:
   - markupsafe=1.1.1
   - matplotlib=3.1.1
   - matplotlib-base=3.1.1
+  - mesalib=18.3.1
   - metis=5.1.0
   - mistune=0.8.4
   - mock=3.0.5
@@ -307,7 +308,7 @@ dependencies:
   - pyparsing=2.4.6
   - pypubsub=4.0.3
   - pyqt=5.6.0
-  - pyrsistent=0.15.7
+  - pyrsistent=0.16.0
   - pyside2=5.6.0a1
   - pysocks=1.7.1
   - pytables=3.6.1
@@ -353,7 +354,7 @@ dependencies:
   - r-catools=1.18.0
   - r-cellranger=1.1.0
   - r-checkmate=2.0.0
-  - r-class=7.3_15
+  - r-class=7.3_16
   - r-cli=2.0.2
   - r-clipr=0.7.0
   - r-cluster=2.1.0

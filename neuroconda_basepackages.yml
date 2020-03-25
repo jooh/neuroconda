@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - r
 dependencies:
+  - mesalib
   - altair
   - black
   - bokeh
