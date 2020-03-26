@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - r
 dependencies:
-  - mesalib
   - altair
   - black
   - bokeh
@@ -328,7 +327,7 @@ dependencies:
   - zarr
   - jax
   - pyarrow
-  - napari
+    # - napari needs newer qt than supported by other libraries (probably fsl)
   - pip:
     - filelock # conda-forge has 3.0.10, but another pip package needs 3.0.12
     - bids-validator
