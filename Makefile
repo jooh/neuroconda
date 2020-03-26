@@ -46,7 +46,17 @@ Dockerfile: $(NEUROCONDA_YML)
 	{ \
 	docker run --rm kaczmarj/neurodocker:$(NEURODOCKER_VERSION) generate docker \
 	--base=neurodebian:stretch --pkg-manager=apt \
+	--ndfreeze date=20200325
+	--install eog evince tree
 	--copy $(NEUROCONDA_YML) /opt/neuroconda.yml \
+	--afni version=latest method=binaries \
+	--ants version=2.3.1 method=binaries \
+	--freesurfer version=6.0.0 method=binaries \
+	--fsl version=5.0.11 method=binaries \
+	--spm12 version=r7487 method=binaries \
+	--vnc passwd=neuroconda start_at_runtime=true geometry=1920x1080 \
+
+
 	--miniconda create_env=neuroconda yaml_file=/opt/neuroconda.yml > Dockerfile ;\
 	}
 
