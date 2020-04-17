@@ -17,6 +17,8 @@ NEUROCONDA_PATH_BUILD = $(PREFIX)neuroconda_build
 
 NEURODOCKER_VERSION ?= 0.6.0
 
+FS_LICENSE = docker/neuroconda-full/license.txt
+
 $(NEUROCONDA_PATH):
 	{ \
 	source $(conda info --base)/etc/profile.d/conda.sh ;\
@@ -41,24 +43,30 @@ $(NEUROCONDA_YML): neuroconda_basepackages.yml
 	echo "neuroconda update completed, $(NEUROCONDA_YML) generated." ;\
 	}
 
-# TODO - other supporting neuro packages
-Dockerfile: $(NEUROCONDA_YML)
+docker/neuroconda-full/Dockerfile: $(NEUROCONDA_YML) $(FS_LICENSE)
 	{ \
 	docker run --rm kaczmarj/neurodocker:$(NEURODOCKER_VERSION) generate docker \
 	--base=neurodebian:stretch --pkg-manager=apt \
-	--ndfreeze date=20200325
-	--install eog evince tree
-	--copy $(NEUROCONDA_YML) /opt/neuroconda.yml \
+	--ndfreeze date=20200325 \
+	--install eog evince tree libdbus-glib-1-2 libjpeg62 libgtk2.0-0 \
 	--afni version=latest method=binaries \
 	--ants version=2.3.1 method=binaries \
-	--freesurfer version=6.0.0 method=binaries \
+	--freesurfer version=6.0.0-min method=binaries \
+	--copy license.txt /opt/freesurfer-6.0.0/ \
 	--fsl version=5.0.11 method=binaries \
-	--spm12 version=r7487 method=binaries \
+	--spm12 version=r7219 method=binaries \
 	--vnc passwd=neuroconda start_at_runtime=true geometry=1920x1080 \
-
-
-	--miniconda create_env=neuroconda yaml_file=/opt/neuroconda.yml > Dockerfile ;\
+	--run 'wget https://github.com/jooh/neuroconda/raw/v2.0/neuroconda.yml' \
+	--miniconda create_env=neuroconda yaml_file=neuroconda.yml > $@ \
+	--add-to-entrypoint ". /opt/freesurfer-6.0.0-min/SetUpFreeSurfer.sh && \
+	. /opt/miniconda-latest/etc/profile.d/conda.sh && \
+	conda activate neuroconda" \
+	|| rm -f $@ ;\
 	}
+
+
+$(FS_LICENSE):
+	$(error Error. Provide path to freesurfer license at $(FS_LICENSE))
 
 uninstall:
 	{ \
@@ -70,5 +78,4 @@ uninstall:
 # aliases
 install: $(NEUROCONDA_PATH)
 update: neuroconda.yml
-docker: Dockerfile
 .PHONY: update install uninstall
