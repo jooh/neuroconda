@@ -1,4 +1,4 @@
-name: Create neuroconda environment from neuroconda.yml
+name: build
 
 on: [push]
 
