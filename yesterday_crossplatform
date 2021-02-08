@@ -1,0 +1,5 @@
+#!/bin/bash
+# return yesterday's date in a platform-invariant manner (at least over OS X and Linux)
+# Could probably be inlined in Makefile, but there are some weird character escape
+# issues
+echo `case "$OSTYPE" in darwin*) date -v '-1d' +'%Y%m%d'; ;; *) date -d "1 days ago" "+%Y%m%d"; esac`
