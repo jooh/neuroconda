@@ -47,6 +47,7 @@ dependencies:
   - pytest-runner
   - pytest-cov
   - python>=3.6
+  - r-stringi
   - r-abind
   - r-afex
   - r-assertthat
@@ -286,9 +287,8 @@ dependencies:
   - seaborn
   - simplegeneric
   - statsmodels
-  - tensorflow>=2
-# awaiting .8 release on conda-forge (which is compatible with tensorflow 2.x)
-# - tensorflow-probability
+  - tensorflow
+  - tensorflow-probability
   - theano
   - tqdm
   - xnat
@@ -327,9 +327,15 @@ dependencies:
   - zarr
   - jax
   - pyarrow
+  - filelock
+  - rpy2
+  - spyder
+  - prefect
+  - airflow-with-dask
+  - pyvista
+  - awscli
     # - napari needs newer qt than supported by other libraries (probably fsl)
   - pip:
-    - filelock # conda-forge has 3.0.10, but another pip package needs 3.0.12
     - bids-validator
     - ciftify
     - citeproc-py
@@ -346,7 +352,6 @@ dependencies:
     - heudiconv
       # - brainiak - skip, incompatible with new pip
     - neurodocker
-    - nistats
     - niworkflows
     - num2words
     - pybids
