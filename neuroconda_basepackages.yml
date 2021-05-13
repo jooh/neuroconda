@@ -334,8 +334,10 @@ dependencies:
   - airflow-with-dask
   - pyvista
   - awscli
+  - jupytext
     # - napari needs newer qt than supported by other libraries (probably fsl)
   - pip:
+    - pynidm
     - bids-validator
     - ciftify
     - citeproc-py
