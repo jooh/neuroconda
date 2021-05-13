@@ -1,6 +1,9 @@
-name: build
+name: install
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'neuroconda.yml'
 
 jobs:
   build-linux:
