@@ -335,6 +335,7 @@ dependencies:
   - pyvista
   - awscli
   - jupytext
+  - num2words
     # - napari needs newer qt than supported by other libraries (probably fsl)
   - pip:
     - pynidm
@@ -355,7 +356,6 @@ dependencies:
       # - brainiak - skip, incompatible with new pip
     - neurodocker
     - niworkflows
-    - num2words
     - pybids
     - pycortex
     - pydeface
