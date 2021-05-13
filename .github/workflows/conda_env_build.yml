@@ -1,9 +1,9 @@
-name: install
+name: build
 
 on:
   push:
     paths:
-      - 'neuroconda.yml'
+      - 'neuroconda_basepackages.yml'
 
 jobs:
   build-linux:
@@ -21,6 +21,9 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
+    - name: Build environment
+      run: |
+        make update
     - name: Install environment
       run: |
         make install
