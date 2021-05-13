@@ -25,6 +25,7 @@ jobs:
       run: |
         rm neuroconda.yml
         make update
+      timeout-minutes: 360
     - name: Install environment
       run: |
         make install
