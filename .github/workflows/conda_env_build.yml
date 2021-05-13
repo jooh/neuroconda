@@ -5,6 +5,8 @@ on:
     paths:
       - 'neuroconda_basepackages.yml'
 
+  workflow_dispatch:
+
 jobs:
   build-linux:
     runs-on: ubuntu-latest
