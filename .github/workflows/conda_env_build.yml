@@ -23,6 +23,7 @@ jobs:
         echo $CONDA/bin >> $GITHUB_PATH
     - name: Build environment
       run: |
+        rm neuroconda.yml
         make update
     - name: Install environment
       run: |
