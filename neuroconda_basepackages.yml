@@ -329,9 +329,7 @@ dependencies:
   - pyarrow
   - filelock
   - rpy2
-  - spyder
   - prefect
-  - airflow-with-dask
   - pyvista
   - awscli
   - jupytext
