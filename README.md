@@ -1,3 +1,5 @@
+[![build](https://github.com/jooh/neuroconda/actions/workflows/conda_env_create.yml/badge.svg)](https://github.com/jooh/neuroconda/actions/workflows/conda_env_create.yml)
+
 A Conda environment for neuroscience. This is a very inclusive environment that covers
 pretty much all neuroimaging-related packages you might want to use. Please let us know
 if you want to see any additional packages.
