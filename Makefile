@@ -47,7 +47,7 @@ APT_PACKAGES_FULL = $(APT_PACKAGES) feh gv tree libjpeg62 libgtk2.0-0 libdbus-gl
 $(NEUROCONDA_PATH):
 	{ \
 	source $(CONDA)/etc/profile.d/conda.sh ;\
-	conda env create --force -f $(NEUROCONDA_YML) --prefix $(NEUROCONDA_PATH) ;\
+	mamba env create --force -f $(NEUROCONDA_YML) --prefix $(NEUROCONDA_PATH) ;\
 	conda activate $(NEUROCONDA_PATH) ;\
 	python -c "import cortex" ;\
 	sed -i \
@@ -60,8 +60,8 @@ $(NEUROCONDA_PATH):
 $(NEUROCONDA_YML): neuroconda_basepackages.yml
 	{ \
 	source $(CONDA)/etc/profile.d/conda.sh ;\
-	conda env create --force -f neuroconda_basepackages.yml --prefix $(NEUROCONDA_PATH_BUILD) ;\
-	conda env export --prefix $(NEUROCONDA_PATH_BUILD) -f $(NEUROCONDA_YML) --no-builds ;\
+	mamba env create --force -f neuroconda_basepackages.yml --prefix $(NEUROCONDA_PATH_BUILD) ;\
+	mamba env export --prefix $(NEUROCONDA_PATH_BUILD) -f $(NEUROCONDA_YML) --no-builds ;\
 	sed -i 's@null@$(NEUROCONDA_VERSION)@' $(NEUROCONDA_YML) ;\
 	sed -i '/prefix:/d' $(NEUROCONDA_YML) ;\
 	sed -i '/.*dcm2bids.*/c\'"`grep Dcm2Bids neuroconda_basepackages.yml`"'' $(NEUROCONDA_YML) ;\
@@ -124,7 +124,7 @@ docker/neuroconda-full/$(FS_LICENSE_PATH):
 uninstall:
 	{ \
 	source $(CONDA)/etc/profile.d/conda.sh ;\
-	conda env remove --yes --prefix $(NEUROCONDA_PATH) ;\
+	mamba env remove --yes --prefix $(NEUROCONDA_PATH) ;\
 	echo "neuroconda uninstalled from $(NEUROCONDA_PATH)." ;\
 	}
 
